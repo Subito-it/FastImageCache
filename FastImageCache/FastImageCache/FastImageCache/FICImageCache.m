@@ -371,7 +371,7 @@ static void _FICAddCompletionBlockForEntity(NSString *formatName, NSMutableDicti
 
 - (NSSet *)formatsToProcessForCompletionBlocks:(NSDictionary *)completionBlocksDictionary entity:(id <FICEntity>)entity {
     // At the very least, we must process all formats with pending completion blocks
-    NSMutableSet *formatsToProcess = [NSMutableSet setWithArray:completionBlocksDictionary.allKeys];
+    NSMutableSet *formatsToProcess = [NSMutableSet setWithArray:completionBlocksDictionary.allKeys ?: @[]];
 
     // Get the list of format families included by the formats we have to process
     NSMutableSet *families;
