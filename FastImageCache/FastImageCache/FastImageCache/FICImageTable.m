@@ -193,7 +193,11 @@ static NSString *const FICImageTableFormatKey = @"format";
         }
        
         NSDictionary *attributes = [fileManager attributesOfItemAtPath:_filePath error:NULL];
-        _fileDataProtectionMode = [attributes objectForKey:NSFileProtectionKey];
+        #if DEBUG
+            _fileDataProtectionMode = [attributes objectForKey:NSFileProtectionKey] ?: NSFileProtectionNone;
+        #else
+            _fileDataProtectionMode = [attributes objectForKey:NSFileProtectionKey];
+        #endif
         
         _fileDescriptor = open([_filePath fileSystemRepresentation], O_RDWR | O_CREAT, 0666);
         
